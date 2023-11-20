@@ -1,7 +1,8 @@
-from ..interfaces.database import DatabaseAccess, UserDTO
-from ..interfaces.token import TokenGenerator
+from ..dataclasses.user import UserData
+from ..interfaces.database import DatabaseAccess
+from ..interfaces.token_generator import TokenGenerator
 from ..interfaces.username_password_auth_response \
-    import UsernamePasswordAuthBoundary, UsernamePasswordAuthResponseModel
+    import UsernamePasswordAuthOutputBoundary, UsernamePasswordAuthResponseModel
 from ...domain.user import User
 
 
@@ -12,23 +13,29 @@ class UsernamePasswordAuthInteractor:
     def __init__(self,
                  db_access: DatabaseAccess,
                  token_generator: TokenGenerator,
-                 presenter: UsernamePasswordAuthBoundary) -> None:
+                 presenter: UsernamePasswordAuthOutputBoundary) -> None:
         self._db_access = db_access
         self._token_generator = token_generator
         self._presenter = presenter
 
     def do(self, username: str, input_password: str):
-        user_dto: UserDTO = self._db_access.get_user_by_username(username)
-        user = User(username=user_dto.username,
-                    password_hash=user_dto.password_hash)
+        user_data: UserData = self._db_access.get_user_by_username(username)
+        user = User(username=user_data.name,
+                    password_hash=user_data.password_hash)
         response = UsernamePasswordAuthResponseModel()
 
         if user.validate_password(input_password=input_password):
             try:
-                response.token = self._token_generator.generate()
+                token = self._token_generator.generate()
+                response.message = "Authentication successful"
+                response.token = token
+                response.user = user_data
+                response.success = True
             except Exception as e:
-                response.error_message = str(e.with_traceback())
+                response.success = False
+                response.message = str(e.with_traceback())
         else:
-            response.error_message = "Incorrect username or password"
+            response.success = False
+            response.message = "Incorrect username or password"
 
         self._presenter.form_response(response)
