@@ -1,2 +1,2 @@
-# ausy
-AuS-y stands for Authentication Service. 
+# CAuSe
+CAuSe stands for **C**entral **Au**thentication **Se**rvice. 
