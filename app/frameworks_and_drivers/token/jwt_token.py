@@ -1,7 +1,8 @@
-from ...application.interfaces.token import TokenGenerator
+from ...application.interfaces.token_generator import TokenGenerator
+from ...application.dataclasses.token import TokenData
 
 
 class JWTToken(TokenGenerator):
 
-    def generate(self) -> str:
+    def generate(self) -> TokenData:
         ...
