@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
-from ..application.use_cases.username_password_auth \
-    import UsernamePasswordAuthBoundary, UsernamePasswordAuthResponseModel
+from ..application.interfaces.username_password_auth_response \
+    import UsernamePasswordAuthOutputBoundary, UsernamePasswordAuthResponseModel
 
 
 @dataclass
@@ -11,7 +11,7 @@ class AuthTokenResponseDTO:
     type: str
 
 
-class AuthTokenPresenter(UsernamePasswordAuthBoundary):
+class AuthTokenPresenter(UsernamePasswordAuthOutputBoundary):
     """_summary_
     """
 

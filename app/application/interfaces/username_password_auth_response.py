@@ -10,7 +10,7 @@ class UsernamePasswordAuthResponseModel:
     token_type: str
 
 
-class UsernamePasswordAuthBoundary(ABC):
+class UsernamePasswordAuthOutputBoundary(ABC):
 
     @abstractmethod
     def form_response(self,
