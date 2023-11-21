@@ -1,8 +1,10 @@
-from ..dataclasses.user import UserData
+from ..data_transfer_objects.user import UserData
+from ..data_transfer_objects.username_password_auth_response_model \
+    import UsernamePasswordAuthResponseModel
 from ..interfaces.database import DatabaseAccess
 from ..interfaces.token_generator import TokenGenerator
 from ..interfaces.username_password_auth_response \
-    import UsernamePasswordAuthOutputBoundary, UsernamePasswordAuthResponseModel
+    import UsernamePasswordAuthOutputBoundary
 from ...domain.user import User
 
 
