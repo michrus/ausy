@@ -3,6 +3,6 @@ from dataclasses import dataclass
 
 @dataclass
 class TokenData:
-    access_token: str
+    token_value: str
+    expiration_timestamp: int
     token_type: str = "Bearer"
-    expires_in: int
