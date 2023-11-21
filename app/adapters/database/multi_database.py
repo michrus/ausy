@@ -1,6 +1,6 @@
 from .database_access import DatabaseAccess
-from ..application.interfaces.data import DataAccess
-from ..application.data_transfer_objects.user import UserData, UserHash
+from ...application.interfaces.data import DataAccess
+from ...application.data_transfer_objects.user import UserData, UserHash
 
 
 class MultiDatabaseAccess(DataAccess):

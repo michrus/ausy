@@ -2,7 +2,7 @@ import os
 import sqlite3
 from typing import Any
 
-from ...adapters.database_access import DatabaseAccess
+from ...adapters.database.database_access import DatabaseAccess
 
 
 class LowLevelEagerSQLite3Database(DatabaseAccess):
