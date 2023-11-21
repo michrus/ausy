@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from ..dataclasses.username_password_auth_response_model \
+from ..data_transfer_objects.username_password_auth_response_model \
     import UsernamePasswordAuthResponseModel
 
 
