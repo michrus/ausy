@@ -10,5 +10,5 @@ class DatabaseAccess(ABC):
         ...
 
     @abstractmethod
-    def get_hash_by_username(self, username: str) -> UserHash:
+    def get_hash_by_user_id(self, user_id: str) -> UserHash:
         ...

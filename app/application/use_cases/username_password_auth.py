@@ -22,7 +22,7 @@ class UsernamePasswordAuthInteractor:
 
     def do(self, username: str, input_password: str):
         user_data: UserData = self._db_access.get_user_by_username(username)
-        user_hash:UserHash = self._db_access.get_hash_by_username(username)
+        user_hash: UserHash = self._db_access.get_hash_by_user_id(user_data.id)
         user = User(user_id=user_data.id,
                     username=user_data.name,
                     email=user_data.email,
