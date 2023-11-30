@@ -11,12 +11,11 @@ class HashingAlgorithm(ABC):
         ...
 
     @property
-    @abstractmethod
     def name(self) -> str:
         return self._name
 
 
-class HashingAlgorithmFactory(ABC):
+class HashingAlgorithmFactoryInterface(ABC):
     @abstractmethod
     def get_hash_algo(self,
                       name: str,
