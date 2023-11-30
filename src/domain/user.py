@@ -1,6 +1,3 @@
-from enum import Enum, auto
-
-
 class User:
 
     def __init__(self,
