@@ -42,3 +42,7 @@ class UsernamePasswordAuthInteractor:
             response.message = str(user_exception)
 
         self._presenter.form_response(response)
+
+    @property
+    def presenter(self) -> UsernamePasswordAuthOutputBoundary:
+        return self._presenter
