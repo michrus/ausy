@@ -7,7 +7,7 @@ from ...application.interfaces.token_generator import TokenGenerator
 from ...application.data_transfer_objects.token import TokenData
 
 
-class JWTToken(TokenGenerator):
+class JWTTokenGenerator(TokenGenerator):
 
     def __init__(self,
                  secret_key: str,
