@@ -1,7 +1,7 @@
 from .database_access import DatabaseAccess
 from ...application.interfaces.data import DataAccess
 from ...application.data_transfer_objects.user \
-    import UserHash, UserHashAlgorithm, UserSalt
+    import UserHash, UserHashAlgorithm
 
 
 class MultiDatabaseAccess(DataAccess):
@@ -9,15 +9,11 @@ class MultiDatabaseAccess(DataAccess):
                  user_hash_access: DatabaseAccess,
                  user_hash_table: str,
                  hash_algo_access: DatabaseAccess,
-                 hash_algo_table: str,
-                 user_salt_access: DatabaseAccess,
-                 user_salt_table: str) -> None:
+                 hash_algo_table: str) -> None:
         self._user_hash_access = user_hash_access
         self._user_hash_table = user_hash_table
         self._hash_algo_access = hash_algo_access
         self._hash_algo_table = hash_algo_table
-        self._user_salt_access = user_salt_access
-        self._user_salt_table = user_salt_table
 
     def get_hash_by_user_id(self, user_id: str) -> UserHash:
         raw_user_hash = self._user_hash_access.get_by_column(
@@ -42,14 +38,3 @@ class MultiDatabaseAccess(DataAccess):
             hash_algorithm=hash_algo_row["hash_algorithm"]
         )
         return user_hash_algo
-
-    def get_salt_by_user_id(self, user_id: str) -> UserSalt:
-        raw_user_salt = self._user_salt_access.get_by_column(
-            table_name=self._user_salt_table,
-            column_name="user_id",
-            column_value=user_id
-        )
-        user_salt_row = raw_user_salt[0]
-        user_salt = UserSalt(user_id=user_salt_row["user_id"],
-                             password_salt=user_salt_row["salt"])
-        return user_salt

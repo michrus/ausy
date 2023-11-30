@@ -18,15 +18,11 @@ if __name__ == "__main__":
                                                   db_dir_path="./")
     hash_algo_db_access = LowLevelEagerSQLite3Database(db_name="hash_algo.db",
                                                        db_dir_path="./")
-    salt_db_access = LowLevelEagerSQLite3Database(db_name="salt.db",
-                                                  db_dir_path="./")
     multi_database_access = MultiDatabaseAccess(
         user_hash_access=hash_db_access,
         user_hash_table="user_hash",
         hash_algo_access=hash_algo_db_access,
-        hash_algo_table="user_hash_algorithm",
-        user_salt_access=salt_db_access,
-        user_salt_table="user_salt"
+        hash_algo_table="user_hash_algorithm"
     )
 
     secrets_hex = secrets.token_hex(32)

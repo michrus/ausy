@@ -10,8 +10,3 @@ class UserHash:
 class UserHashAlgorithm:
     user_id: str
     hash_algorithm: str
-
-@dataclass
-class UserSalt:
-    user_id: str
-    password_salt: str
