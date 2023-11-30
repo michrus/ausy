@@ -1,7 +1,11 @@
+import json
+
 from .database_access import DatabaseAccess
 from ...application.interfaces.data import DataAccess
-from ...application.data_transfer_objects.user \
-    import UserHash, UserHashAlgorithm
+from ...application.data_transfer_objects.user_hash \
+    import UserHash
+from ...application.data_transfer_objects.user_hash_algo \
+    import UserHashAlgorithm
 
 
 class MultiDatabaseAccess(DataAccess):
@@ -33,8 +37,10 @@ class MultiDatabaseAccess(DataAccess):
             column_value=user_id
         )
         hash_algo_row = raw_hash_algo[0]
+        parameters = json.loads(hash_algo_row["algorithm_parameters"])
         user_hash_algo = UserHashAlgorithm(
             user_id=hash_algo_row["user_id"],
-            hash_algorithm=hash_algo_row["hash_algorithm"]
+            hash_algorithm=hash_algo_row["hash_algorithm"],
+            algorithm_parameters=parameters
         )
         return user_hash_algo

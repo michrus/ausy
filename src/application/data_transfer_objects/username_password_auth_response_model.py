@@ -2,7 +2,6 @@ from dataclasses import dataclass
 from typing import Optional
 
 from .token import TokenData
-from .user import UserData
 
 
 @dataclass

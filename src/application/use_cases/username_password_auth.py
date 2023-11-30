@@ -1,4 +1,4 @@
-from ..data_transfer_objects.user import UserData, UserHash
+from ..data_transfer_objects.user_hash import UserHash
 from ..data_transfer_objects.username_password_auth_response_model \
     import UsernamePasswordAuthResponseModel
 from ..interfaces.data import DataAccess
