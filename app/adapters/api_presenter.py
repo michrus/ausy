@@ -1,3 +1,4 @@
+import json
 from typing import Optional
 
 from ..application.interfaces.username_password_auth_response \
@@ -9,7 +10,7 @@ class ApiAuthTokenPresenter(UsernamePasswordAuthOutputBoundary):
     """
 
     def __init__(self) -> None:
-        self._response = None
+        self._response: str = "{}"
 
     def form_response(self,
                       response_data: UsernamePasswordAuthResponseModel) -> None:
@@ -35,8 +36,8 @@ class ApiAuthTokenPresenter(UsernamePasswordAuthOutputBoundary):
                 "status": "error",
                 "message": response_data.message,
             }
-        self._response = response
+        self._response = json.dumps(response)
 
     @getattr
-    def response(self) -> Optional[dict[str, str]]:
+    def response(self) -> str:
         return self._response
