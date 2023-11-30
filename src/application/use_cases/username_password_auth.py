@@ -3,9 +3,9 @@ from ..data_transfer_objects.user_hash_algo import UserHashAlgorithm
 from ..data_transfer_objects.username_password_auth_response_model \
     import UsernamePasswordAuthResponseModel
 from ..interfaces.data import DataAccess, DataAccessException
-from ..interfaces.hash_algo \
-    import HashingAlgorithm, HashingAlgorithmFactory, \
-        HashingAlgorithmFactoryException
+from ..interfaces.hash_algo import HashingAlgorithm, \
+                                   HashingAlgorithmFactoryInterface, \
+                                   HashingAlgorithmFactoryException
 from ..interfaces.token_generator import TokenGenerator
 from ..interfaces.username_password_auth_response \
     import UsernamePasswordAuthOutputBoundary
@@ -17,10 +17,11 @@ class UsernamePasswordAuthInteractor:
     """
     def __init__(self,
                  data_access: DataAccess,
+                 hash_algo_factory: HashingAlgorithmFactoryInterface,
                  token_generator: TokenGenerator,
                  presenter: UsernamePasswordAuthOutputBoundary) -> None:
         self._data_access = data_access
-        self._hash_algo_factory = HashingAlgorithmFactory()
+        self._hash_algo_factory = hash_algo_factory
         self._token_generator = token_generator
         self._presenter = presenter
 
