@@ -10,6 +10,7 @@ from src.application.use_cases.username_password_auth \
     import UsernamePasswordAuthInteractor
 from src.frameworks_and_drivers.database.sqlite3_db \
     import LowLevelEagerSQLite3Database
+from src.frameworks_and_drivers.hash_algo.factory import HashingAlgorithmFactory
 from src.frameworks_and_drivers.token.jwt_token import JWTTokenGenerator
 
 
@@ -25,6 +26,8 @@ if __name__ == "__main__":
         hash_algo_table="user_hash_algorithm"
     )
 
+    hash_algo_factory = HashingAlgorithmFactory()
+
     secrets_hex = secrets.token_hex(32)
     one_hour = timedelta(hours=1)
     jwt_generator = JWTTokenGenerator(secret_key=secrets_hex,
@@ -33,6 +36,7 @@ if __name__ == "__main__":
     presenter = ApiAuthTokenPresenter()
     username_password_interactor = UsernamePasswordAuthInteractor(
         data_access=multi_database_access,
+        hash_algo_factory=hash_algo_factory,
         token_generator=jwt_generator,
         presenter=presenter
     )
