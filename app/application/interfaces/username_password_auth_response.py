@@ -8,3 +8,8 @@ class UsernamePasswordAuthOutputBoundary(ABC):
     def form_response(self,
                       response_data: UsernamePasswordAuthResponseModel) -> None:
         pass
+
+    @property
+    @abstractmethod
+    def response(self):
+        pass
