@@ -13,3 +13,7 @@ class UsernamePasswordController:
         username_standardized = username.lower()
         self._use_case.do(username=username_standardized,
                           input_password=password)
+
+    @property
+    def use_case(self) -> UsernamePasswordAuthInteractor:
+        return self._use_case
