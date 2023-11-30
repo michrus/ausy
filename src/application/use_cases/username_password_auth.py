@@ -27,8 +27,11 @@ class UsernamePasswordAuthInteractor:
         response = UsernamePasswordAuthResponseModel()
 
         try:
-            user.validate_password(input_password=input_password)
+            input_password_hash = self._hash_algo.hash(input_password)
+
+            user.validate_password(input_password_hash=input_password_hash)
             token = self._token_generator.generate()
+
             response.message = "Authentication successful"
             response.token = token
             response.user_id = user_id
