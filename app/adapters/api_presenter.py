@@ -38,6 +38,6 @@ class ApiAuthTokenPresenter(UsernamePasswordAuthOutputBoundary):
             }
         self._response = json.dumps(response)
 
-    @getattr
+    @property
     def response(self) -> str:
         return self._response
