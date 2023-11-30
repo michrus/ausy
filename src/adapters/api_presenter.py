@@ -20,14 +20,12 @@ class ApiAuthTokenPresenter(UsernamePasswordAuthOutputBoundary):
                 "message": response_data.message,
                 "data": {
                     "user": {
-                        "id": response_data.user.id,
-                        "name": response_data.user.name,
-                        "email": response_data.user.email
+                        "id": response_data.user_id
                     },
                     "token": {
-                        "accessToken": response_data.token.access_token,
+                        "accessToken": response_data.token.token_value,
                         "tokenType": response_data.token.token_type,
-                        "expiresIn": response_data.token.expires_in
+                        "expiresIn": response_data.token.expiration_timestamp
                     }
                 }
             }

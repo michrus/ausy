@@ -9,5 +9,5 @@ from .user import UserData
 class UsernamePasswordAuthResponseModel:
     success: bool
     message: str
-    user: Optional[UserData] = UserData()
+    user_id: str
     token: Optional[TokenData] = TokenData()

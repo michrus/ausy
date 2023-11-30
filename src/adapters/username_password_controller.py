@@ -9,9 +9,9 @@ class UsernamePasswordController:
     def __init__(self, use_case: UsernamePasswordAuthInteractor) -> None:
         self._use_case = use_case
 
-    def username_password_auth(self, username: str, password: str) -> None:
-        username_standardized = username.lower()
-        self._use_case.do(username=username_standardized,
+    def username_password_auth(self, user_id: str, password: str) -> None:
+        user_id_standardized = user_id.lower()
+        self._use_case.do(user_id=user_id_standardized,
                           input_password=password)
 
     @property

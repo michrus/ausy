@@ -14,11 +14,11 @@ def get_controller() -> UsernamePasswordController:
 @app.route("/signin", methods=["POST"])
 def sign_in():
     data = request.form
-    username: str = data.get("username", "")
+    user_id: str = data.get("user_id", "")
     password: str = data.get("password", "")
 
     controller = get_controller()
-    controller.username_password_auth(username=username,
+    controller.username_password_auth(user_id=user_id,
                                       password=password)
     presenter = controller.use_case.presenter
 

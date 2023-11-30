@@ -20,13 +20,9 @@ class UsernamePasswordAuthInteractor:
         self._token_generator = token_generator
         self._presenter = presenter
 
-    def do(self, username: str, input_password: str):
-        user_data: UserData = self._data_access.get_user_by_username(username)
-        user_hash: UserHash = self._data_access.get_hash_by_user_id(user_data.id)
-        user = User(user_id=user_data.id,
-                    username=user_data.name,
-                    email=user_data.email,
-                    access_level=user_data.access_level,
+    def do(self, user_id: str, input_password: str):
+        user_hash: UserHash = self._data_access.get_hash_by_user_id(user_id)
+        user = User(user_id=user_id,
                     password_hash=user_hash.password_hash)
         response = UsernamePasswordAuthResponseModel()
 
@@ -35,7 +31,7 @@ class UsernamePasswordAuthInteractor:
             token = self._token_generator.generate()
             response.message = "Authentication successful"
             response.token = token
-            response.user = user_data
+            response.user_id = user_id
             response.success = True
         except UserException as user_exception:
             response.success = False

@@ -1,22 +1,12 @@
 from enum import Enum, auto
 
 
-class AccessLevel(Enum):
-    ADMIN = auto()
-
-
 class User:
 
     def __init__(self,
                  user_id: str,
-                 username: str,
-                 email: str,
-                 access_level: str,
                  password_hash: str) -> None:
         self._user_id: str = user_id
-        self._username: str = username
-        self._email: str = email
-        self._access_level: AccessLevel = AccessLevel[access_level.upper()]
         self._password_hash: str = password_hash
 
     def change_password(self, current_password: str, new_password: str) -> bool:
@@ -27,9 +17,6 @@ class User:
     def serialize(self) -> dict[str, str]:
         return {
             "user_id": self._user_id,
-            "username": self._username,
-            "email": self._email,
-            "access_level": self._access_level.name,
             "password_hash": self._password_hash
         }
 
