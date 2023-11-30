@@ -12,3 +12,7 @@ class DataAccess(ABC):
     @abstractmethod
     def get_hash_algo_by_user_id(self, user_id: str) -> UserHashAlgorithm:
         pass
+
+
+class DataAccessException(Exception):
+    pass
