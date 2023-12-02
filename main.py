@@ -1,17 +1,17 @@
 import secrets
 from datetime import timedelta
 
-from src.frameworks_and_drivers.server.flask_router import app, g
+from src.infrastructure.server.flask_router import app, g
 
 from src.adapters.api_presenter import ApiAuthTokenPresenter
 from src.adapters.database.multi_database import MultiDatabaseAccess
 from src.adapters.username_password_controller import UsernamePasswordController
 from src.application.use_cases.username_password_auth \
     import UsernamePasswordAuthInteractor
-from src.frameworks_and_drivers.database.sqlite3_db \
+from src.infrastructure.database.sqlite3_db \
     import LowLevelEagerSQLite3Database
-from src.frameworks_and_drivers.hash_algo.factory import HashingAlgorithmFactory
-from src.frameworks_and_drivers.token.jwt_token import JWTTokenGenerator
+from src.infrastructure.hash_algo.factory import HashingAlgorithmFactory
+from src.infrastructure.token.jwt_token import JWTTokenGenerator
 
 
 if __name__ == "__main__":
